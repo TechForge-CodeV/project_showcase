@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Projects | Code-V</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar fixed-top glass-nav">
+  <div class="container d-flex justify-content-between align-items-center">
+    <a class="navbar-brand fw-bold" href="index.html">
+      <span class="brand-icon">V</span> Code-V
+    </a>
+
+    <div class="d-flex align-items-center gap-4">
+      <a class="nav-link text-white d-none d-md-block" href="index.html#projects">Projects</a>
+      <a class="nav-link text-white d-none d-md-block" href="index.html#members">Members</a>
+      <a class="nav-link text-white d-none d-md-block" href="index.html#collab">Collaborate</a>
+      <button class="theme-btn" id="themeToggle">
+        <i class="bi bi-moon-stars"></i>
+      </button>
+      <a class="btn btn-primary rounded-pill px-4 d-none d-md-block" href="index.html">
+        Login
+      </a>
+      <button class="navbar-toggler border-0 shadow-none text-white fs-2 p-0 d-md-none" type="button" data-bs-toggle="modal" data-bs-target="#menuModal">
+        <i class="bi bi-list"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Menu Modal -->
+<div class="modal fade menu-modal" id="menuModal" tabindex="-1">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content glass-modal modal-scale">
+      <div class="modal-header border-0 pb-0">
+        <button class="btn-close btn-close-white ms-auto" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body d-flex flex-column justify-content-center text-center">
+        <a class="nav-link" href="index.html#projects" data-bs-dismiss="modal">Home</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-orb orb-1" style="top: 10%; left: 0;"></div>
+<div class="bg-orb orb-2" style="bottom: 10%; right: 0;"></div>
+
+<section class="section mt-5" style="min-height: 80vh;">
+  <div class="container">
+    <div class="mb-4">
+      <a href="index.html" class="btn btn-outline-light rounded-pill btn-sm px-3">
+        <i class="bi bi-arrow-left"></i> Back to Home
+      </a>
+    </div>
+    <div class="section-head mb-5 text-start border-bottom border-secondary pb-4">
+      <h2 class="display-5 fw-bold">All Projects</h2>
+      <p>Explore, filter, and discover every project built by our community.</p>
+    </div>
+
+    <div class="row">
+      <!-- Filters Sidebar -->
+      <div class="col-lg-3 mb-4">
+        <div class="glass-card p-4 sticky-top" style="top: 100px;">
+          <h4 class="mb-4"><i class="bi bi-funnel"></i> Filters</h4>
+          
+          <div class="mb-4">
+            <label class="form-label fw-bold text-uppercase small text-white">Category</label>
+            <select id="filterCategory" class="form-select form-select-sm rounded-pill py-2 ps-3 text-white">
+              <option value="All">All Categories</option>
+              <option value="Web App">Web App</option>
+              <option value="Mobile App">Mobile App</option>
+              <option value="AI / ML">AI / ML</option>
+              <option value="Automation">Automation</option>
+              <option value="UI / UX">UI / UX</option>
+            </select>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-bold text-uppercase small text-white">Tech Stack</label>
+            <input type="text" id="filterTech" class="form-control form-control-sm rounded-pill py-2 ps-3 text-white" placeholder="e.g. React, Python">
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-bold text-uppercase small text-white">Minimum Rating</label>
+            <div class="d-flex align-items-center gap-2">
+              <input type="range" class="form-range flex-grow-1" id="filterRating" min="0" max="5" step="1" value="0">
+              <span id="ratingVal" class="badge bg-primary rounded-pill" style="min-width: 40px;">0+ <i class="bi bi-star-fill small"></i></span>
+            </div>
+          </div>
+          
+          <button id="resetFilters" class="btn btn-outline-light w-100 rounded-pill btn-sm py-2">Reset Filters</button>
+        </div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="col-lg-9">
+        <div class="row g-4 transition-wrapper" id="projectList">
+          <!-- Projects rendered here -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Project Review Modal -->
+<div class="modal fade" id="reviewModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content glass-modal modal-scale">
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="reviewModalTitle">Project Reviews</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex align-items-center mb-4">
+          <h2 class="mb-0 me-3" id="avgRatingDisplay">0.0</h2>
+          <div class="text-warning fs-4" id="avgStarsDisplay">
+            <i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+          </div>
+          <span class="ms-2 text-white" id="totalReviewsDisplay">(0 reviews)</span>
+        </div>
+        
+        <div class="review-list mb-4" id="reviewList" style="max-height: 300px; overflow-y: auto;">
+          <!-- Reviews will go here -->
+        </div>
+
+        <hr class="border-secondary">
+
+        <div id="loginMessage" style="display:none;" class="text-center py-3">
+          <p class="text-white">Please login on the home page to add a review.</p>
+        </div>
+
+        <form id="reviewForm">
+          <input type="hidden" id="reviewProjectId">
+          <div class="mb-3">
+            <label>Your Rating</label>
+            <div class="rating-input text-warning fs-4" id="ratingInput">
+              <i class="bi bi-star" data-rating="1"></i>
+              <i class="bi bi-star" data-rating="2"></i>
+              <i class="bi bi-star" data-rating="3"></i>
+              <i class="bi bi-star" data-rating="4"></i>
+              <i class="bi bi-star" data-rating="5"></i>
+            </div>
+            <input type="hidden" id="selectedRating" value="0" required>
+          </div>
+          <div class="mb-3">
+            <label>Leave a Comment</label>
+            <textarea class="form-control" id="reviewComment" rows="2" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary rounded-pill px-4">Submit Review</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer mt-auto">
+  <p>© 2026 Code-V Developer Club. Built for creators, coders, and innovators.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="app.js"></script>
+<script>
+  // Page specific logic for filtering
+  document.addEventListener("DOMContentLoaded", () => {
+    const filterCategory = document.getElementById("filterCategory");
+    const filterTech = document.getElementById("filterTech");
+    const filterRating = document.getElementById("filterRating");
+    const ratingVal = document.getElementById("ratingVal");
+    const resetFiltersBtn = document.getElementById("resetFilters");
+
+    function applyFilters() {
+      const cat = filterCategory.value;
+      const tech = filterTech.value.toLowerCase().trim();
+      const rating = parseInt(filterRating.value);
+
+      const filtered = projects.filter(p => {
+        let matchCat = cat === "All" || p.category === cat;
+        let matchTech = tech === "" || p.tech.some(t => t.toLowerCase().includes(tech));
+        
+        // Calculate dynamic avg rating
+        let avgRating = p.rating || 0;
+        if (p.reviews && p.reviews.length > 0) {
+          avgRating = p.reviews.reduce((acc, curr) => acc + curr.rating, 0) / p.reviews.length;
+        }
+        let matchRating = avgRating >= rating;
+
+        return matchCat && matchTech && matchRating;
+      });
+
+      // Animate transition
+      const projectList = document.getElementById("projectList");
+      projectList.style.opacity = 0;
+      setTimeout(() => {
+        renderProjects(filtered);
+        projectList.style.opacity = 1;
+        projectList.style.transition = "opacity 0.4s ease-in-out";
+      }, 300);
+    }
+
+    if (filterCategory) filterCategory.addEventListener("change", applyFilters);
+    if (filterTech) filterTech.addEventListener("input", applyFilters);
+    if (filterRating) filterRating.addEventListener("input", (e) => {
+      ratingVal.innerHTML = e.target.value + '+ <i class="bi bi-star-fill small"></i>';
+      applyFilters();
+    });
+    if (resetFiltersBtn) resetFiltersBtn.addEventListener("click", () => {
+      filterCategory.value = "All";
+      filterTech.value = "";
+      filterRating.value = "0";
+      ratingVal.innerHTML = '0+ <i class="bi bi-star-fill small"></i>';
+      applyFilters();
+    });
+  });
+</script>
+</body>
+</html>

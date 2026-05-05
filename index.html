@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code-V | Developer Club Showcase</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav class="navbar fixed-top glass-nav">
+  <div class="container d-flex justify-content-between align-items-center">
+    <a class="navbar-brand fw-bold" href="#">
+      <span class="brand-icon">V</span> Code-V
+    </a>
+
+    <div class="d-flex align-items-center gap-4">
+      <a class="nav-link text-white d-none d-md-block" href="#projects">Projects</a>
+      <a class="nav-link text-white d-none d-md-block" href="#members">Members</a>
+      <a class="nav-link text-white d-none d-md-block" href="#collab">Collaborate</a>
+      <button class="theme-btn" id="themeToggle">
+        <i class="bi bi-moon-stars"></i>
+      </button>
+
+      <button class="navbar-toggler border-0 shadow-none text-white fs-2 p-0 d-md-none" type="button" data-bs-toggle="modal" data-bs-target="#menuModal">
+        <i class="bi bi-list"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Menu Modal -->
+<div class="modal fade menu-modal" id="menuModal" tabindex="-1">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content glass-modal modal-scale">
+      <div class="modal-header border-0 pb-0">
+        <button class="btn-close btn-close-white ms-auto" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body d-flex flex-column justify-content-center text-center">
+        <a class="nav-link" href="#projects" data-bs-dismiss="modal">Projects</a>
+        <a class="nav-link" href="#members" data-bs-dismiss="modal">Members</a>
+        <a class="nav-link" href="#collab" data-bs-dismiss="modal">Collaborate</a>
+        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header class="hero-section">
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <div class="container">
+    <div class="row align-items-center min-vh-100">
+      <div class="col-lg-7">
+        <div class="hero-badge">
+          <i class="bi bi-stars"></i> Developer Club Project Showcase
+        </div>
+
+        <h1 class="hero-title">
+          Showcase your projects, find teammates, and grow with <span>Code-V</span>.
+        </h1>
+
+        <p class="hero-text">
+          A modern community platform for developers to publish projects, collect feedback,
+          collaborate with members, and build a public portfolio.
+        </p>
+
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <button class="btn btn-primary btn-lg rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#projectModal">
+            <i class="bi bi-cloud-upload"></i> Submit Project
+          </button>
+          <a href="#projects" class="btn btn-outline-light btn-lg rounded-pill px-4">
+            Explore Projects
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-5 mt-5 mt-lg-0">
+        <div class="hero-card glass-card">
+          <div class="code-window">
+            <div class="dots">
+              <span></span><span></span><span></span>
+            </div>
+            <pre><code>const club = "Code-V";
+
+function showcase(project) {
+  publish(project);
+  getFeedback();
+  findCollaborators();
+}
+
+showcase("AI Attendance System");</code></pre>
+          </div>
+
+          <div class="stats-grid mt-4">
+            <div>
+              <h3>120+</h3>
+              <p>Members</p>
+            </div>
+            <div>
+              <h3>45+</h3>
+              <p>Projects</p>
+            </div>
+            <div>
+              <h3>18+</h3>
+              <p>Teams</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-head">
+      <h2>Featured Projects</h2>
+      <p>Discover amazing work built by Code-V members.</p>
+    </div>
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 gap-3">
+      <div class="position-relative w-100 w-md-50">
+        <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-white"></i>
+        <input type="text" id="searchInput" class="form-control rounded-pill ps-5 py-2 text-white" placeholder="Search by name, category, or tech...">
+      </div>
+      <a href="projects.html" class="btn btn-primary rounded-pill px-4 py-2 text-nowrap">Show All Projects <i class="bi bi-arrow-right ms-2"></i></a>
+    </div>
+
+    <div class="row g-4" id="projectList"></div>
+  </div>
+</section>
+
+<section class="section" id="members">
+  <div class="container">
+    <div class="section-head">
+      <h2>Developer Profiles</h2>
+      <p>Find skilled members and connect with them.</p>
+    </div>
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 gap-3">
+      <div class="position-relative w-100 w-md-50">
+        <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-white"></i>
+        <input type="text" id="memberSearchInput" class="form-control rounded-pill ps-5 py-2 text-white" placeholder="Search members by name or role...">
+      </div>
+      <a href="developers.html" class="btn btn-primary rounded-pill px-4 py-2 text-nowrap">Show All Developers <i class="bi bi-arrow-right ms-2"></i></a>
+    </div>
+
+    <div class="row g-4" id="memberList"></div>
+  </div>
+</section>
+
+<section class="section" id="collab">
+  <div class="container">
+    <div class="glass-card collab-box">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <h2>Open Collaboration Board</h2>
+          <p>
+            Members can request teammates, offer help, review projects, and join active builds.
+          </p>
+
+          <div class="collab-tags">
+            <span>Frontend Help</span>
+            <span>Backend API</span>
+            <span>UI Review</span>
+            <span>Firebase Setup</span>
+            <span>Testing</span>
+          </div>
+        </div>
+
+        <div class="col-lg-5 mt-4 mt-lg-0">
+          <div class="request-card">
+            <h5>Need a teammate?</h5>
+            <p>Post your requirement and let Code-V members join your project.</p>
+            <button class="btn btn-primary rounded-pill w-100">Create Request</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<footer class="footer">
+  <p>© 2026 Code-V Developer Club. Built for creators, coders, and innovators.</p>
+</footer>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content glass-modal modal-scale">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">Login to Code-V</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <input type="email" class="form-control mb-3" placeholder="Email address">
+        <input type="password" class="form-control mb-3" placeholder="Password">
+
+        <button class="btn btn-primary w-100 rounded-pill mb-3">
+          Login
+        </button>
+
+        <button class="btn btn-outline-light w-100 rounded-pill" id="googleLoginBtn">
+          <i class="bi bi-google"></i> Continue with Google
+        </button>
+
+      
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Contributor Profile Modal -->
+<div class="modal fade" id="contributorModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content glass-modal modal-scale">
+      <div class="modal-header border-0 pb-0">
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center pt-0">
+        <div id="contributorAvatar" class="member-avatar mx-auto mb-3" style="width: 90px; height: 90px; font-size: 2.5rem;"></div>
+        <h4 id="contributorName" class="mb-1"></h4>
+        <p id="contributorRole" class="text-secondary mb-2"></p>
+        <p id="contributorBio" class="text-white small">Passionate developer building amazing things. Always ready for a new challenge!</p>
+        <div class="d-flex justify-content-center gap-3 mt-4">
+          <a href="#" class="btn btn-outline-light rounded-circle icon-btn"><i class="bi bi-github"></i></a>
+          <a href="#" class="btn btn-outline-light rounded-circle icon-btn"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="btn btn-outline-light rounded-circle icon-btn"><i class="bi bi-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Project Review Modal -->
+<div class="modal fade" id="reviewModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content glass-modal modal-scale">
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="reviewModalTitle">Project Reviews</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex align-items-center mb-4">
+          <h2 class="mb-0 me-3" id="avgRatingDisplay">0.0</h2>
+          <div class="text-warning fs-4" id="avgStarsDisplay">
+            <i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+          </div>
+          <span class="ms-2 text-white" id="totalReviewsDisplay">(0 reviews)</span>
+        </div>
+        
+        <div class="review-list mb-4" id="reviewList" style="max-height: 300px; overflow-y: auto;">
+          <!-- Reviews will go here -->
+        </div>
+
+        <hr class="border-secondary">
+
+        <div id="loginMessage" style="display:none;" class="text-center py-3">
+          <p class="text-white">Please <a href="#" class="text-primary fw-bold" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">login</a> to add a review.</p>
+        </div>
+
+        <form id="reviewForm">
+          <input type="hidden" id="reviewProjectId">
+          <div class="mb-3">
+            <label>Your Rating</label>
+            <div class="rating-input text-warning fs-4" id="ratingInput">
+              <i class="bi bi-star" data-rating="1"></i>
+              <i class="bi bi-star" data-rating="2"></i>
+              <i class="bi bi-star" data-rating="3"></i>
+              <i class="bi bi-star" data-rating="4"></i>
+              <i class="bi bi-star" data-rating="5"></i>
+            </div>
+            <input type="hidden" id="selectedRating" value="0" required>
+          </div>
+          <div class="mb-3">
+            <label>Leave a Comment</label>
+            <textarea class="form-control" id="reviewComment" rows="2" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary rounded-pill px-4">Submit Review</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Project Submit Modal -->
+<div class="modal fade" id="projectModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content glass-modal modal-scale">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">Submit New Project</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="projectForm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label>Project Title</label>
+              <input type="text" id="projectTitle" class="form-control" required>
+            </div>
+
+            <div class="col-md-6">
+              <label>Category</label>
+              <select id="projectCategory" class="form-select">
+                <option>Web App</option>
+                <option>Mobile App</option>
+                <option>AI / ML</option>
+                <option>Automation</option>
+                <option>UI / UX</option>
+              </select>
+            </div>
+
+            <div class="col-12">
+              <label>Description</label>
+              <textarea id="projectDescription" class="form-control" rows="3" required></textarea>
+            </div>
+
+            <div class="col-md-6">
+              <label>Tech Stack</label>
+              <input type="text" id="projectTech" class="form-control" placeholder="HTML, CSS, JS, Firebase">
+            </div>
+
+            <div class="col-md-6">
+              <label>GitHub Link</label>
+              <input type="url" id="projectGithub" class="form-control">
+            </div>
+
+            <div class="col-md-6">
+              <label>Live Demo Link</label>
+              <input type="url" id="projectDemo" class="form-control">
+            </div>
+
+            <div class="col-md-6">
+              <label>Looking for Collaborators?</label>
+              <select id="projectCollab" class="form-select">
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="btn btn-primary rounded-pill px-4 mt-4" type="submit">
+            Submit Project
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="project-data.js"></script>
+<script src="developers-data.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
