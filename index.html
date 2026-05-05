@@ -44,7 +44,7 @@
         <a class="nav-link" href="#projects" data-bs-dismiss="modal">Projects</a>
         <a class="nav-link" href="#members" data-bs-dismiss="modal">Members</a>
         <a class="nav-link" href="#collab" data-bs-dismiss="modal">Collaborate</a>
-        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+        
       </div>
     </div>
   </div>
@@ -129,7 +129,7 @@ showcase("AI Attendance System");</code></pre>
         <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-white"></i>
         <input type="text" id="searchInput" class="form-control rounded-pill ps-5 py-2 text-white" placeholder="Search by name, category, or tech...">
       </div>
-      <a href="projects.html" class="btn btn-primary rounded-pill px-4 py-2 text-nowrap">Show All Projects <i class="bi bi-arrow-right ms-2"></i></a>
+      <!-- <a href="projects.html" class="btn btn-primary rounded-pill px-4 py-2 text-nowrap">Show All Projects <i class="bi bi-arrow-right ms-2"></i></a> -->
     </div>
 
     <div class="row g-4" id="projectList"></div>
@@ -192,32 +192,6 @@ showcase("AI Attendance System");</code></pre>
   <p>© 2026 Code-V Developer Club. Built for creators, coders, and innovators.</p>
 </footer>
 
-<!-- Login Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content glass-modal modal-scale">
-      <div class="modal-header border-0">
-        <h5 class="modal-title">Login to Code-V</h5>
-        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-      </div>
-
-      <div class="modal-body">
-        <input type="email" class="form-control mb-3" placeholder="Email address">
-        <input type="password" class="form-control mb-3" placeholder="Password">
-
-        <button class="btn btn-primary w-100 rounded-pill mb-3">
-          Login
-        </button>
-
-        <button class="btn btn-outline-light w-100 rounded-pill" id="googleLoginBtn">
-          <i class="bi bi-google"></i> Continue with Google
-        </button>
-
-      
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- Contributor Profile Modal -->
 <div class="modal fade" id="contributorModal" tabindex="-1">
@@ -264,9 +238,6 @@ showcase("AI Attendance System");</code></pre>
 
         <hr class="border-secondary">
 
-        <div id="loginMessage" style="display:none;" class="text-center py-3">
-          <p class="text-white">Please <a href="#" class="text-primary fw-bold" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">login</a> to add a review.</p>
-        </div>
 
         <form id="reviewForm">
           <input type="hidden" id="reviewProjectId">
@@ -329,6 +300,16 @@ showcase("AI Attendance System");</code></pre>
               <label>Tech Stack</label>
               <input type="text" id="projectTech" class="form-control" placeholder="HTML, CSS, JS, Firebase">
             </div>
+
+            <div class="col-md-6">
+  <label>Developers</label>
+  <input
+    type="text"
+    id="projectDevelopers"
+    class="form-control"
+    placeholder="Sumanth, Aarav"
+  >
+</div>
 
             <div class="col-md-6">
               <label>GitHub Link</label>

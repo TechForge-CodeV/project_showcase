@@ -1,5 +1,3 @@
-let isLoggedIn = false;
-
 // Load projects from project-data.js
 // Make sure project-data.js uses: let projects = [...]
 const projectList = document.getElementById("projectList");
@@ -23,9 +21,13 @@ function renderProjects(filteredProjects = projects) {
   }
 
   filteredProjects.forEach(project => {
-    const tags = project.tech
-      .map(t => `<span class="tag">${t}</span>`)
-      .join("");
+const tags = project.tech
+  .map(t => `<span class="tag">${t}</span>`)
+  .join("");
+
+const developerTags = project.developers && project.developers.length > 0
+  ? project.developers.map(dev => `<span class="tag">${dev}</span>`).join("")
+  : `<span class="text-white opacity-75 small">No developers listed</span>`;
 
     let avgRating = project.rating || 0;
 
@@ -66,9 +68,16 @@ function renderProjects(filteredProjects = projects) {
           <p class="text-white opacity-75 mb-2">${project.category}</p>
           <p class="text-white">${project.description}</p>
 
-          <div class="mb-4">${tags}</div>
+          <div class="mb-3">
+  ${tags}
+</div>
 
-          <div class="d-flex gap-2 flex-wrap">
+<div class="mb-4">
+  <p class="text-white opacity-75 mb-2 small">Developed by:</p>
+  ${developerTags}
+</div>
+
+          <div class="project-actions d-flex gap-2 flex-wrap">
             ${
               project.liveUrl
                 ? `
@@ -211,26 +220,32 @@ document.getElementById("projectForm")?.addEventListener("submit", function (e) 
     .map(item => item.trim())
     .filter(Boolean);
 
-  const githubUrl = document.getElementById("projectGithub").value.trim();
-  const liveUrl = document.getElementById("projectDemo").value.trim();
+const githubUrl = document.getElementById("projectGithub").value.trim();
+const liveUrl = document.getElementById("projectDemo").value.trim();
+
+const developers = document.getElementById("projectDevelopers").value
+  .split(",")
+  .map(name => name.trim())
+  .filter(Boolean);
 
   if (!title || !description) {
     alert("Please fill all required fields.");
     return;
   }
 
-  projects.unshift({
-    id: Date.now(),
-    title,
-    category,
-    description,
-    tech,
-    icon: "bi-rocket-takeoff",
-    githubUrl,
-    liveUrl,
-    rating: 0,
-    reviews: []
-  });
+projects.unshift({
+  id: Date.now(),
+  title,
+  category,
+  description,
+  tech,
+  developers,
+  icon: "bi-rocket-takeoff",
+  githubUrl,
+  liveUrl,
+  rating: 0,
+  reviews: []
+});
 
   localStorage.setItem("codev_projects", JSON.stringify(projects));
 
