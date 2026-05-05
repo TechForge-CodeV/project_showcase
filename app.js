@@ -4,6 +4,14 @@ const projectList = document.getElementById("projectList");
 const memberList = document.getElementById("memberList");
 const themeToggle = document.getElementById("themeToggle");
 
+function updateProjectCount() {
+  const projectCount = document.getElementById("projectCount");
+
+  if (projectCount) {
+    projectCount.innerText = projects.length + "+";
+  }
+}
+
 // -------------------- PROJECTS --------------------
 
 function renderProjects(filteredProjects = projects) {
@@ -108,6 +116,11 @@ const developerTags = project.developers && project.developers.length > 0
   });
 }
 
+function shuffleProjects() {
+  projects.sort(() => Math.random() - 0.5);
+}
+
+
 function loadProjects() {
   const stored = localStorage.getItem("codev_projects");
 
@@ -125,8 +138,8 @@ function loadProjects() {
     projects = merged;
   }
 
-  projects.sort((a, b) => b.id - a.id);
-  renderProjects();
+shuffleProjects();
+renderProjects();
 }
 
 // -------------------- MEMBERS --------------------
@@ -249,8 +262,9 @@ projects.unshift({
 
   localStorage.setItem("codev_projects", JSON.stringify(projects));
 
-  renderProjects();
-  this.reset();
+renderProjects();
+updateProjectCount();
+this.reset();
 
   const modal = bootstrap.Modal.getInstance(document.getElementById("projectModal"));
   if (modal) modal.hide();
@@ -260,21 +274,30 @@ projects.unshift({
 
 // -------------------- SEARCH PROJECTS --------------------
 
-const searchInput = document.getElementById("searchInput");
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("searchInput");
 
-if (searchInput) {
-  searchInput.addEventListener("input", e => {
-    const query = e.target.value.toLowerCase();
+  if (!searchInput) return;
+
+  searchInput.addEventListener("input", (e) => {
+    const query = e.target.value.toLowerCase().trim();
+
+    if (!query) {
+      renderProjects(projects);
+      return;
+    }
 
     const filtered = projects.filter(project =>
       project.title.toLowerCase().includes(query) ||
       project.category.toLowerCase().includes(query) ||
-      project.tech.some(tech => tech.toLowerCase().includes(query))
+      project.description.toLowerCase().includes(query) ||
+      project.tech.some(t => t.toLowerCase().includes(query)) ||
+      (project.developers && project.developers.some(d => d.toLowerCase().includes(query)))
     );
 
     renderProjects(filtered);
   });
-}
+});
 
 // -------------------- SEARCH MEMBERS --------------------
 
@@ -300,9 +323,10 @@ function openContributorModal(memberIdx) {
   const member = members[memberIdx];
   if (!member) return;
 
-  document.getElementById("contributorName").innerText = member.name;
-  document.getElementById("contributorRole").innerText = member.role;
-  document.getElementById("contributorAvatar").innerText = member.name.charAt(0);
+document.getElementById("contributorName").innerText = member.name;
+document.getElementById("contributorRole").innerText = member.role;
+document.getElementById("contributorAvatar").innerText = member.name.charAt(0);
+document.getElementById("contributorBio").innerText = member.bio || "Passionate developer building amazing things.";
 
   const modal = new bootstrap.Modal(document.getElementById("contributorModal"));
   modal.show();
@@ -466,8 +490,9 @@ document.getElementById("reviewForm")?.addEventListener("submit", function (e) {
   }
 });
 
-// -------------------- INIT --------------------
 
+// -------------------- INIT --------------------
 loadTheme();
 loadProjects();
 renderMembers();
+updateProjectCount();

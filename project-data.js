@@ -180,5 +180,32 @@ const projects = [
     liveUrl: "https://github.com/vaibhavforeal/trade-tracker",
     rating: 0,
     reviews: []
+  },
+  {
+    id: 15,
+    title: "Shannon AI Pentester GUI",
+    category: "Web App",
+    description: "A GUI-based tool for AI-powered penetration testing, implementing Shannon-based security concepts.",
+    tech: ["JavaScript", "HTML", "CSS"],
+    developers: ["Vaibhav Shettar"],
+    icon: "bi-shield-lock-fill",
+    githubUrl: "https://github.com/vaibhavforeal/Shannon-Security-GUI-version",
+    liveUrl: "https://github.com/vaibhavforeal/Shannon-Security-GUI-version",
+    rating: 0,
+    reviews: []
+  },
+  {
+    id: 16,
+    title: "Election Process Education",
+    category: "Web App",
+    description: "An AI-powered civic education tool that helps Karnataka citizens understand the election process in English & ಕನ್ನಡ with step-by-step guidance, constituency lookup, and live Q&A.",
+    tech: ["HTML", "CSS", "JavaScript", "Firebase", "Gemini API", "Google Cloud"],
+    developers: ["Sujay M H"],
+    icon: "bi-people-fill",
+    githubUrl: "",
+    liveUrl: "https://election-process-education-602894482227.us-central1.run.app/",
+    rating: 0,
+    reviews: []
   }
+
 ];
